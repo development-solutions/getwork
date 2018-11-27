@@ -1,0 +1,77 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'applicant_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {% include 'applicant_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Update Password</p>
+                    </div>
+                    <div class="col-md-9 col-sm-12 col-xs-12 nopadding">
+                        <div class="profile-edit row">
+                            <form method="post" action="/profile/updatePassword">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Current Password <span class="required">*</span></label>
+                                        <input type="password" name="current_password" placeholder="" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.current_password|raw }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>New Password <span class="required">*</span></label>
+                                        <input type="password" name="new_password" placeholder="" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.new_password|raw }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Confirm Password <span class="required">*</span></label>
+                                        <input type="password" name="con_password" placeholder="" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.con_password|raw }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="btn btn-default pull-right" name="update" type="submit" value="Update Password" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if message != empty %}
+<script type="text/javascript">
+    setTimeout(function(){
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "progressBar": true,
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.{{ alert|raw }}("{{ message|e }}",{timeOut: 5000});
+    },200);
+</script>
+{% endif %}
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                   {% if errors|length > 0 %}
+                        jQuery("[data-toggle='tooltip']").tooltip("show");
+                   {% endif %}
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'applicant_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'applicant_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Bookmarked Jobs</p>
+                    </div>
+                    <div class="all-jobs-list-box2">
+                        {% if jobs|length == 0 %}
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h4 class="search-result-text">You have 0 Bookmarked jobs.</h4>
+                            </div>
+                        {% endif %}
+                        {% for job in jobs %}
+                            <div class="job-box job-box-2 expire-box ribbon-content cstm-job-box">
+                                <div class="job-title-box">
+                                    <a href="/home/jobdetails/{{ job.id }}">
+                                        <div class="job-title">{{ job.title }}</div>
+                                    </a>
+                                    <a href="#"><span class="job-type comp-name">{{ job.company_name }}</span></a>
+                                </div>
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ job.location }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-gbp" aria-hidden="true"></i> {{ job.salary|e ~"/"~ job.salary_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="joblistlogo"><img src="/uploads/{{ job.logo|default('logo.jpg') }}" alt="logo of best Jobs"></div>
+                                    </div>  
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p class="jt-full-time-color"> <i class="fa fa-clock-o"></i> {{job.job_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-user"></i> {{ job.applications|e }} applications</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <p>{{ job.description|raw|slice(0,150) }}...<a href="/home/jobdetails/{{ job.id }}">Read More</a></p>
+                                    <div class="expire-job-box">
+                                        <span class="expire-date"> This job will Expire on <strong>{{ job.last_date|date("d M, Y") }}</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="expire-job-box">                                
+                                        <span class="pull-right">
+                                            <a data-id="{{ job.id|e }}" href="javascript:void(0);" onclick="window.profile.delBookmark(this)" class="btn btn-danger"> Delete Bookmark</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {# <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="pagination-box clearfix">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a>
+                                </li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

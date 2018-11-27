@@ -1,0 +1,51 @@
+Array
+(
+    [response] => stdClass Object
+        (
+            [id] => 3
+            [first_name] => Sukhwinder
+            [last_name] => Singh
+            [email] => fwebservices1313@gmail.com
+            [password] => e10adc3949ba59abbe56e057f20f883e
+            [reset_code] => 
+            [org_name] => 
+            [role] => 3
+            [active] => 1
+            [email_verify] => 1
+            [verification_code] => 31383433333436363533
+            [date] => 2016-12-28 04:31:00
+            [updated] => 
+            [last_login] => 2016-12-30 13:20:26
+        )
+
+    [session] => CI_Session Object
+        (
+            [userdata] => Array
+                (
+                    [__ci_last_regenerate] => 1483104175
+                    [username] => Sukhwinder
+                    [email] => fwebservices1313@gmail.com
+                    [uid] => 3
+                    [role] => 3
+                    [verified] => 1
+                    [logged_in] => 1
+                )
+
+            [_driver:protected] => files
+            [_config:protected] => Array
+                (
+                    [cookie_lifetime] => 7200
+                    [cookie_name] => ci_session
+                    [cookie_path] => /
+                    [cookie_domain] => 
+                    [cookie_secure] => 
+                    [expiration] => 7200
+                    [match_ip] => 
+                    [save_path] => /tmp
+                    [_sid_regexp] => [0-9a-v]{32}
+                )
+
+            [_sid_regexp:protected] => [0-9a-v]{32}
+        )
+
+)

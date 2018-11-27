@@ -1,0 +1,109 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Jobs accessible on Getwork.construction look through our gathering of online Work postings, incorporating openings in full time and part time.">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Get Work - London Jobs | Full or Part time Construction Jobs</title>
+{% endblock %}
+{% block content %}
+
+<section class="company-dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="dashboard-header">
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="dashboard-header-logo-box">
+                            <div class="company-logo">
+                                <img src="/uploads/{{ org.logo|default('logo.jpg') }}" alt="Railway construction jobs" class="img-responsive center-block ">
+                            </div>
+                            <h3>{{ org.company_name }}</h3>
+                            <p>{{ org.website_url }}</p>
+                            <p>{{ org.address~" "~org.city~" "~org.provience }}</p>
+                            <ul class="social-links list-inline">
+                                <li> <a href="{{ org.facebook_url|default('#') }}"><i class="icon-facebook"></i></a></li>
+                                <li> <a href="{{ org.twitter_url|default('#') }}"><i class="icon-twitter"></i></a></li>
+                                <li> <a href="{{ org.googleplus_url|default('#') }}"><i class="icon-googleplus"></i></a></li>
+                                <li> <a href="{{ org.linkedin_url|default('#') }}"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="rad-info-box">
+                            <i class="icon icon-profile-male"></i>
+                            <span class="title-dashboard">Followers</span>
+                            <span class="value"><span>{{ org.followers }}</span></span>
+                        </div>
+                        <div class="rad-info-box">
+                            <i class="icon icon-presentation"></i>
+                            <span class="title-dashboard">Jobs Posted</span>
+                            <span class="value"><span>{{ org.jobsPosted }}</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="job-short-detail">
+                    <div class="heading-inner">
+                        <p class="title">Profile detail</p>
+                    </div>
+                    <dl>
+                        <dt>Company Name:</dt>
+                        <dd> {{ org.company_name }}</dd>
+
+                        <dt>Trade:</dt>
+                        <dd> {{ org.type_of_business|default("Not Provided") }}</dd>
+
+                        {# <dt>Phone:</dt>
+                        <dd> {{ org.phone }}</dd>
+
+                        <dt>Email:</dt>
+                        <dd> {{ org.email }}</dd> #}
+
+                        <dt>No. of Employees:</dt>
+                        <dd> {{ org.employees|default("Not Provided") }}</dd>
+
+                        <dt>Address:</dt>
+                        <dd> {{ org.address|default("Not Provided") }}</dd>
+
+                        <dt>City:</dt>
+                        <dd> {{ org.city|default("Not Provided") }}</dd>
+
+                        <dt>County:</dt>
+                        <dd> {{ org.provience|default("Not Provided") }}</dd>
+
+                        <dt>Country:</dt>
+                        <dd> {{ org.country|default("Not Provided") }}</dd>
+                    </dl>
+                </div>
+                <div class="heading-inner">
+                    <p class="title">Company Description</p>
+                </div>
+                <p>{{ org.description|default("Not Provided") }}</p>
+                {% if userType == 2 %}
+                    <div class="apply-job">
+                        {% if subscribed %}
+                            <a href="javascript:void(0);" data-id="{{ org.user_id_fk|e }}" onclick="window.profile.subscribeOrg(this)" class="btn btn-info cstm-btn">Subscribed</a>
+                        {% else %}
+                            <a href="javascript:void(0);" data-id="{{ org.user_id_fk|e }}" onclick="window.profile.subscribeOrg(this)" class="btn btn-default">Subscribe for Notifications</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

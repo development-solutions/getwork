@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block metatags %}
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		<!--[if IE]>
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Find latest Construction Jobs or Railway Jobs in UK online on Getwork.construction. View and Apply now for best desired Construction job free.">
+		<meta name="author" content="ScriptsBundle">
+	{% endblock %}
+	{% block title %}
+		<title>Getwork - Construction Jobs in UK | Railway jobs in UK</title>
+	{% endblock %}
+    {% include 'header.twig' %}
+</head>
+<body>
+<div class="page">
+	{% block navigation %}
+    	{% include navbar|default("navigation")~'.twig' %}
+	{% endblock %}
+    {% block content %} {% endblock %}
+    {% block footer %}
+    	{% include 'footer.twig' %}
+    {% endblock footer %}
+</div>
+</body>
+</html>

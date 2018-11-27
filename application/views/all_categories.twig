@@ -1,0 +1,125 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Getwork.construction Providing solutions for construction recruiters and job seekers Learn new skill sets and qualifications from the experts and become highly employable">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Post free Jobs in London| Best Construction jobs in London - Getwork</title>
+{% endblock %}
+{% block content %}
+
+<section class="categories">
+     <div class="categories-header col-lg-12 col-md-12 col-sm-12"><h1>Job categories</h1></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title black">
+                        <p>Search Jobs through different construction categories to match best for your profile.</p>
+                    </div>
+                </div>
+                <div class="job-categories col-md-12 col-sm-12 col-xs-12 nopadding">
+                    <section class="category-section-3 light-blue nopadding trades">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="trade t1" data-id="6">
+                                        <div class="category-section-3-box">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner"> 
+                                            <h2> Railway Construction Jobs</h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t2" data-id="3">
+                                        <div class="category-section-3-box backg">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner">
+                                            <h2> Bridges/Roads & Highway Construction Jobs</h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t3" data-id="7">
+                                        <div class="category-section-3-box backg1">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner"> 
+                                            <h2> Tunneling & underground Jobs </h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t4" data-id="5">
+                                        <div class="category-section-3-box backg2">
+                                                                   
+                                        </div>
+                                        <div class="category-section-3-box-inner">
+                                            <h2> Housing & Building Construction Jobs </h2>
+                                        </div>
+                                    </div>
+                               
+                                   
+                                    <div class="trade t5" data-id="4">
+                                        <div class="category-section-3-box backg5">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner"> 
+                                            <h2>Commercial Building Jobs</h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t6" data-id="8">
+                                        <div class="category-section-3-box backg6">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner">
+                                            <h2> Utilities,Marine & Nucleas Construction Jobs</h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t7" data-id="2">
+                                        <div class="category-section-3-box backg7">
+                                                                    
+                                        </div>
+                                        <div class="category-section-3-box-inner"> 
+                                            <h2> Airport Construction Jobs </h2>
+                                        </div>
+                                    </div>
+                                    <div class="trade t8" data-id="1">
+                                        <div class="category-section-3-box backg8">
+                                                                  
+                                        </div>
+                                        <div class="category-section-3-box-inner">
+                                            <h2> Other Construction Jobs </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {# <div id="cats-masonry" style="-moz-column-count:3;">
+                        <ul class="">
+                            {% for category in categories %}
+                                <li><a href="#"> {{ category.job_category }} <span>( {{ category.jobsCount }} )</span> </a></li>
+                            {% endfor %}
+                        </ul>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script>
+                jQuery(".trades .trade").on("click",function(ele){
+                    window.common.jumpJobSearch(jQuery(this).attr("data-id"));
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

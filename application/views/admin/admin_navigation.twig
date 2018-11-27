@@ -1,0 +1,27 @@
+ <div id="spinner">
+    <div class="spinner-img"> <img alt="Opportunities Preloader" src="../../images/loader.gif" />
+        <h2>Please Wait.....</h2>
+    </div>
+</div>
+<div class="cstm-loader">
+    <div class="spinner-img"> <img alt="Opportunities Preloader" src="../../images/loader.gif" />
+    </div>
+</div>
+<nav id="menu-1" class="mega-menu fa-change-black" data-color=""> 
+    <section class="menu-list-items"> 
+        <ul class="menu-logo">
+            <li> <a href="/"> <img src="../../images/logo.png" alt="logo" class="img-responsive"> </a> </li>
+        </ul>
+        <ul class="menu-links pull-right">
+            <li class="profile-pic hoverTrigger">
+			    <a href="javascript:void(0)"> <img src="/uploads/{{ user.profile_image|default('profile.jpg') }}" alt="user-img" class="img-circle" width="36"><span class="hidden-xs hidden-sm">{{user.first_name}} {{user.last_name}}</span><i class="fa fa-angle-down fa-indicator"></i> <div class="mobileTriggerButton"></div></a>
+			    <ul class="drop-down-multilevel left-side effect-fade" style="transition: all 400ms ease 0s;">
+			        <li><a href="/admin"><i class="fa fa-user"></i> Dashboard</a></li>
+			        <li><a href="/admin"><i class="fa fa-gear"></i> Account Setting</a></li>
+			        <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+			    </ul>
+			</li>
+        </ul>
+    </section>
+</nav>
+<div class="clearfix"></div>

@@ -1,0 +1,123 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="company-dashboard">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="dashboard-header">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="dashboard-header-logo-box">
+                            <div class="company-logo">
+                                <img src="/uploads/{{ user.logo|default('logo.jpg') }}" alt="Courses in construction" class="img-responsive center-block "></a>
+                            </div>
+                            <h3>{{ user.company_name }}</h3>
+                            <p>{{ user.website_url }}</p>
+                            <p>{{ user.address~" "~user.city~" "~user.provience }}</p>
+                            <ul class="social-links list-inline">
+                                <li> <a href="{{ user.facebook_url }}"><i class="icon-facebook"></i></a></li>
+                                <li> <a href="{{ user.twitter_url }}"><i class="icon-twitter"></i></a></li>
+                                <li> <a href="{{ user.googleplus_url }}"><i class="icon-googleplus"></i></a></li>
+                                <li> <a href="{{ user.linkedin_url }}"><i class="icon-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="rad-info-box">
+                            <i class="icon icon-profile-male"></i>
+                            <span class="title-dashboard">Followers</span>
+                            <span class="value"><span>{{ user.followers|default(0) }}</span></span>
+                        </div>
+                        <div class="rad-info-box">
+                            <i class="icon icon-presentation"></i>
+                            <span class="title-dashboard">Jobs Posted</span>
+                            <span class="value"><span>{{ user.jobsPosted|default(0) }}</span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="rad-info-box">
+                            <i class="icon icon-documents"></i>
+                            <span class="title-dashboard">New Messages</span>
+                            <span class="value"><span>{{ user.newMsg|default(0) }}</span></span>
+                        </div>
+                        <div class="rad-info-box rad-txt-success">
+                            <i class="icon icon-briefcase"></i>
+                            <span class="title-dashboard">Featured Jobs</span>
+                            <span class="value"><span>{{ user.featuredJobs|default(0) }}</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {% include 'employer_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="job-short-detail">
+                        <div class="heading-inner">
+                            <p class="title">Profile detail</p>
+                        </div>
+                        <dl>
+                            <dt>Company Name:</dt>
+                            <dd> {{ user.company_name }} </dd>
+
+                            <dt>Trade:</dt>
+                            <dd> {{ user.type_of_business }} </dd>
+
+                            <dt>Phone:</dt>
+                            <dd>{{ user.phone }} </dd>
+
+                            <dt>Email:</dt>
+                            <dd>{{ user.email }} </dd>
+
+                            <dt>No. of Employees:</dt>
+                            <dd>{{ user.employees }} </dd>
+
+                            <dt>Address:</dt>
+                            <dd>{{ user.address }} </dd>
+
+                            <dt>City:</dt>
+                            <dd>{{ user.city }} </dd>
+
+                            <dt>County:</dt>
+                            <dd>{{ user.provience }} </dd>
+
+                            <dt>Country:</dt>
+                            <dd>{{ user.country }} </dd>
+                        </dl>
+                    </div>
+                    <div class="heading-inner">
+                        <p class="title">Company Description</p>
+                    </div>
+                    <p>{{ user.company_description|default("company description")}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if verified == 0 %}
+    <script type="text/javascript">
+    setTimeout(function(){
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "progressBar": true,
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+            "extendedTimeOut": "0",
+            "timeOut": "0",
+        }
+        toastr.error("<a href='javascript:void(0)' onclick='window.common.verifyEmail()'>Please verify your email </br>Click here to resend verification email.</a>");
+    },500);
+    </script>
+{% endif %}
+{% endblock %}

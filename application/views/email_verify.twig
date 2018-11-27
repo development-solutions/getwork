@@ -1,0 +1,22 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+<section class="faqs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title">
+                        <h1>{{ message|raw }}</h1>
+                        {% if verified %}
+                            <p><a href="/login">Click here to Login</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

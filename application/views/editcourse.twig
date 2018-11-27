@@ -1,0 +1,104 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {# {% include 'employer_sidebar.twig' %} #}
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Update Course</p>
+                    </div>
+                    <div class="profile-edit row">
+                        <form method="post" action="/dashboard/edit_course/{{ fields.id }}">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Course Title :<span class="required"></span></label>
+                                    <input type="text" value="{{ fields.title }}" name="title" placeholder="Course Title" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.title|raw }}">
+                                </div>
+                            </div>                           
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Qualification Required</label>
+                                    <input type="text" value="{{ fields.qualification }}" name="qualification" placeholder="Qualification" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.qualification|raw }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group cstm-select">
+                                    <label>Course Type</label>
+                                    <select name="course_type" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ errors.course_type|raw }}">
+                                        {% for course in courseType %}
+                                            <option value="{{ course.id }}" {% if course.id == fields.course_type_fk %}selected{% endif %}>{{ course.course_type }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Course Duration</label>
+                                    <input type="text" value="{{ fields.duration }}" name="duration" placeholder="Duration" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.duration|raw }}">
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12 nopaddingright">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" value="{{ fields.price }}" name="price" placeholder="Course Price" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.price|raw }}">   
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12 nopaddingleft">
+                                <div class="form-group cstm-select">
+                                    <label>Price Type</label>
+                                    <select name="price_type" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ errors.price_type|raw }}">
+                                        {% for price in priceType %}
+                                            <option value="{{ price.id }}" {% if price.id == fields.price_type_fk %}selected{% endif %} >/{{ price.price_type|capitalize }}</option>
+                                        {% endfor %}
+                                    </select>  
+                                </div>
+                            </div>
+                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group cstm-select">
+                                    <label>Category</label>
+                                    <select name="category" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ errors.category|raw }}">
+                                        {% for category in categories %}
+                                            <option value="{{ category.id }}" {% if category.id == fields.category_fk %}selected{% endif %}>{{ category.course_category }}</option>
+                                        {% endfor %}    
+                                    </select>
+                                </div>
+                            </div>                           
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Course description</label>
+                                    <textarea id="ckeditor" name="description" placeholder="Course Description" cols="6" rows="8" placeholder="" class="form-control" data-toggle="tooltip" data-html="true" title="{{ errors.description|raw }}">{{ fields.description }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                 <input class="btn btn-default pull-right" value="Update Course" name="edit" type="submit"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                   {% if errors|length > 0 %}
+                        jQuery("[data-toggle='tooltip']").tooltip("show");
+                   {% endif %}
+                   CKEDITOR.replace("ckeditor");
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

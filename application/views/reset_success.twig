@@ -1,0 +1,33 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title">
+                        <h1>{{ message|raw }}</h1>
+                        <p><a href="/login/relogin">Click to login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if message != empty %}
+<script type="text/javascript">
+    setTimeout(function(){
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "progressBar": true,
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.{{ alert|raw }}("{{ message|e }}",{timeOut: 5000});
+    },200);
+</script>
+{% endif %}
+{% endblock %}

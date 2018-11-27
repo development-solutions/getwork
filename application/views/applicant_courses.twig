@@ -1,0 +1,112 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'applicant_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'applicant_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Shortlisted Courses</p>
+                    </div>
+                    <div class="all-jobs-list-box2">
+                        {% if courses|length == 0 %}
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h4 class="search-result-text">You have 0 shortlisted courses.</h4>
+                            </div>
+                        {% endif %}
+                        {% for course in courses %}
+                            <div class="job-box job-box-2 expire-box ribbon-content cstm-job-box">
+                                <div class="job-title-box">
+                                    <a href="/home/jobdetails/{{ job.id }}">
+                                        <div class="job-title">{{ course.title }}</div>
+                                    </a>
+                                    <a href="#"><span class="job-type comp-name">{{ course.company_name }}</span></a>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-file-o" aria-hidden="true"></i> {{ course.course_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-gbp" aria-hidden="true"></i> {{ course.price|e ~"/"~ course.price_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="joblistlogo"><img src="/uploads/{{ course.logo|default('logo.jpg') }}" alt="logo best railway jobs"></div>
+                                    </div>  
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p class="jt-full-time-color"> <i class="fa fa-clock-o"></i> {{course.duration }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <a href=""><p><i class="fa fa-tags"></i> {{ course.course_category|e }}</p></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <p>{{ course.description|slice(0,150)|raw }}...</p>
+                                    <p><a href="/home/courseinfo/{{ course.id }}"><i class="fa fa-eye"></i> Read More</a> 
+                                    {# <div class="expire-job-box">
+                                        <span class="expire-date"> This job will Expire on <strong>{{ job.last_date|date("d M, Y") }}</strong></span>
+                                    </div> #}
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="expire-job-box">                                
+                                        <span class="pull-right">
+                                            <a data-id="{{ course.id|e }}" href="javascript:void(0);" onclick="window.profile.delCourse(this)" class="btn btn-danger"> Delete Course</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# <div class="job-box job-box-2 expire-box ribbon-content">
+                                <div class="job-title-box">
+                                    <a href="#"><div class="job-title">{{ course.title}}</div></a>
+                                    <div class="courselogo"><img src="/images/logo.png" alt="construction courses logo"></div>
+                                    <a href="#"><strong><h4> {{ course.price }}</h4></strong></a>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <a href="#" class="job-type jt-full-time-color"><i class="fa fa-clock-o"></i> {{ course.course_type}}</a>
+                                        <p><strong>Study Method</strong> Classroom</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p><strong>Location</strong> Central London, London </p>
+                                        <p><strong>Duration</strong> 3 Years, Full-time </p>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <p>{{ course.description|slice(0,100) }}...</p>
+                                    </div>
+                                    <p><a href=""><i class="fa fa-eye"></i> Read More</a>
+                                        <a href=""><i class="fa fa-envelope"></i> Enquire Now</a></p>
+                                </div>
+                                <div class="expire-job-box">
+                                    <span class="expire-date">This job will Expire on <strong>12 Aug, 2016</strong></span>
+                                </div>
+                            </div> #}
+                        {% endfor %}
+                    </div>
+                    {# <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="pagination-box clearfix">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a>
+                                </li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="post-job">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="box-panel">
+                    <div class="Heading-title black">
+                        <h3>Update A job</h3>
+                        {# <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p> #}
+                    </div>
+                    <form class="row" action="/dashboard/edit_job/{{ job.id }}" method="post">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" placeholder="Job Title" value="{{ job.title }}" name="title" class="form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_title|raw }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" placeholder="Job Location" value="{{ job.location }}" name="location" class="form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_location|raw }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Job Category</label>
+                                <select class="questions-category form-control" name="category" data-toggle="tooltip" data-html="true" title="{{ error.error_category|raw }}">
+                                    {% for cat in job_categories %}
+                                        <option value="{{ cat.id|e }}" {% if cat.id==job.category_fk %} selected {% endif %}>{{ cat.job_category|e }}</option>    
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Job Type</label>
+                                <select name="job_type" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_job_type|raw }}">
+                                    {% for type in jobType %}
+                                        <option value="{{ type.id|e }}" {% if type.id==job.type_fk %} selected {% endif %}>{{ type.job_type|e }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Job Experience</label>
+                                <select name="experience" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_experience|raw }}">
+                                    {% for exp in jobExperience %}
+                                        <option value="{{exp.id|e}}" {% if exp.id==job.experience_fk %} selected {% endif %}>{{exp.job_experience|e}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 nopaddingright">
+                            <div class="form-group input-icon-left">
+                                <label>Offered Salary</label>
+                                <input type="text" placeholder="Offered Salary" value="{{ job.salary }}" name="salary" class="form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_salary|raw }}">
+                                <i class="fa fa-gbp"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12 nopadding">
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <select name="salary_type" class="questions-category form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_salary_type|raw }}">
+                                    {% for type in salaryType %}
+                                        <option value="{{ type.id|e }}" {% if type.id == job.salary_type_fk %} selected {% endif %}>/{{ type.salary_type|capitalize }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>No. of Vacancies</label>
+                                <input type="text" placeholder="Vacancies" value="{{ job.vacancies }}" name="vacancies" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Last Date</label>
+                                <input type="text" placeholder="Last Date" value="{{ job.last_date }}" name="last_date" class="form_date form-control" data-date-format="dd-mm-yyyy">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Skills</label>
+                                <input type="text" id="tags" name="skills" value="{{ job.skills|raw }}" class="form-control" data-role="tagsinput">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label>Job Description</label>
+                                <textarea name="job_description" cols="6" rows="8" placeholder="" class="form-control" data-toggle="tooltip" data-html="true" title="{{ error.error_description|raw }}">{{ job.description|raw }}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <input type="submit" name="update" value="Update Job" class="btn btn-default pull-right" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if message != empty %}
+<script type="text/javascript">
+    setTimeout(function(){
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "progressBar": true,
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.{{ alert|raw }}("{{ message|e }}",{timeOut: 5000});
+    },200);
+</script>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <!-- FOR THIS PAGE ONLY -->
+            <script type="text/javascript" src="../../js/jquery.tagsinput.min.js"></script>
+            <script type="text/javascript">
+            jQuery(document).ready(function(){
+                {% if error|length > 0 %}
+                    jQuery("[data-toggle='tooltip']").tooltip("show");
+                {% endif %}
+
+                $(".questions-category").select2({
+                    placeholder: "Select Post Category",
+                    allowClear: true,
+                    maximumSelectionLength: 3,
+                    /*width: "50%",*/
+                });
+                $('#tags').tagsInput({
+                    width: 'auto'
+                });
+            });
+            </script>
+
+            <!-- CK-EDITOR -->
+            <script src="http://cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
+            <script type="text/javascript">
+                /*CKEDITOR.replace('ckeditor');*/
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

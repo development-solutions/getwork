@@ -1,0 +1,57 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Look for most recent Construction Jobs in London across over top organizations. Look and apply to most appropriate employment opportunities">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Search Construction Jobs in Top Companies | Post Free Jobs UK</title>
+{% endblock %}
+{% block content %}
+
+<section class="categories">
+    <div class="companies-top col-lg-12 col-md-12 col-sm-12"><h1>Top Companies</h1></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title black">
+                        
+                        <p>Search jobs through a list of Leading companies.</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                    <div id="cats-masonry">
+                        {% for org in companies %}
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <a href="/home/companyinfo/{{ org.user_id_fk|e }}">
+                                    <div class="company-list-box">
+                                        <span class="company-list-img">
+                                        	<img src="/uploads/{{ org.logo|default('logo.jpg') }}" class="img-responsive" alt="railway jobs london">
+                                        </span>
+                                        <div class="company-list-box-detail">
+                                            <h5> {{ org.company_name }} </h5>
+                                            <p>{{ org.address~" "~org.city~" "~org.provience }} </p>
+                                            {# <div class="ratings"> <i class="fa fa-star color"></i> <i class="fa fa-star color"></i> <i class="fa fa-star color"></i> <i class="fa fa-star-half-full color"></i> <i class="fa fa-star-o"></i><span class="badge"> 4.5</span> </div> #}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                        {# <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="load-more-btn">
+                                <button class="btn-default"> Load More <i class="fa fa-refresh"></i> </button>
+                            </div>
+                        </div> #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

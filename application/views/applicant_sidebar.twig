@@ -1,0 +1,52 @@
+<div class="col-md-3 col-sm-3 col-xs-12">
+    {% if page != 'profile' %}
+        <div class="profile-card">
+            {# <div class="banner">
+                <img src="../../images/building.jpg" alt="jobs in london england" class="img-responsive">
+            </div> #}
+            <div class="user-image">
+                <img src="/uploads/{{ user.profile_image|default('profile.jpg') }}" class="img-responsive img-circle" alt="Construction management jobs">
+            </div>
+            <div class="card-body">
+                <h3>{{user.first_name|capitalize}} {{user.last_name|capitalize}}</h3>
+                <span class="title">{# A web Designer #}</span>
+            </div>
+            <ul class="social-network social-circle onwhite">
+                <li><a href="{{ user.facebook_url }}" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{ user.twitter_url }}" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="{{ user.linkedin_url }}" target="_blank" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="{{ user.googleplus_url }}" target="_blank" class="icoLinkedin" title="Linkedin +"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    {% endif %}
+    <div class="profile-nav">
+        <div class="panel">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="{{ page=='profile'?'active' }}">
+                    <a href="/profile"> <i class="fa fa-user"></i> Dashboard</a>
+                </li>
+                <li class="{{ page=='edit_profile'?'active' }}">
+                    <a href="/profile/edit_profile"> <i class="fa fa-edit"></i>Edit Profile</a>
+                </li>
+                <li class="{{ page=='inbox'?'active' }}">
+                    <a href="/profile/inbox"> <i class="fa fa-file-o"></i>Inbox <span class="badge">new {{ unreadmsg|default(0) }}</span></a>
+                </li>
+                <li class="{{ page=='jobs'?'active' }}">
+                    <a href="/profile/jobs"> <i class="fa  fa-list-ul"></i> Jobs Applied</a>
+                </li>
+                <li class="{{ page=='followed'?'active' }}">
+                    <a href="/profile/followed"> <i class="fa  fa-bookmark-o"></i> Followed Companies </a>
+                </li>
+                <li class="{{ page=='bookmarked'?'active' }}">
+                    <a href="/profile/bookmarked"> <i class="fa  fa-bookmark-o"></i> Bookmarked </a>
+                </li>
+                <li class="{{ page=='courses'?'active' }}">
+                    <a href="/profile/courses"> <i class="fa  fa-bookmark-o"></i> My Courses </a>
+                </li>
+                <li class="{{ page=='settings'?'active' }}">
+                    <a href="/profile/settings"> <i class="fa  fa-bookmark-o"></i> Account Settings </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

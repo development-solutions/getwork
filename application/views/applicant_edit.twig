@@ -1,0 +1,398 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'applicant_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {% include 'applicant_sidebar.twig' %}
+                <form action="/profile/edit_profile" method="post" enctype="multipart/form-data">
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Edit Profile</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="profile-edit row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>First Name <span class="required"></span></label>
+                                    <input value="{{ fields.first_name}}" placeholder="" class="form-control" type="text" name="first_name" data-toggle="tooltip" data-html="true" title="{{ errors.error_fname|raw }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Last Name <span class="required"></span></label>
+                                    <input value="{{ fields.last_name}}" placeholder="" class="form-control" type="text" name="last_name" data-toggle="tooltip" data-html="true" title="{{ errors.error_lname|raw }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Date of Birth <span class="required"></span></label>
+                                    <input value="{{ fields.d_o_b}}" placeholder="" class="form_date form-control" type="text" name="d_o_b" data-date-format="dd-mm-yyyy">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Email <span class="required"></span></label>
+                                    <input value="{{ fields.email}}" readonly placeholder="" class="form-control" type="email" name="email" data-toggle="tooltip" data-html="true" title="{{ errors.error_email|raw }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Phone <span class="required"></span></label>
+                                    <input value="{{ fields.phone}}" placeholder="" class="form-control" type="text" name="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Last Education <span class="required"></span></label>
+                                    <input value="{{ fields.last_education}}" placeholder="" class="form-control" type="text" name="last_education">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Address <span class="required"></span></label>
+                                    <input value="{{ fields.address}}" placeholder="" class="form-control" type="text" name="address">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>City <span class="required"></span></label>
+                                    <input value="{{ fields.city}}" placeholder="" class="form-control" type="text" name="city">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Post Code <span class="required"></span></label>
+                                    <input value="{{ fields.postcode}}" placeholder="" class="form-control" type="text" name="postcode">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>County <span class="required"></span></label>
+                                    <input value="{{ fields.provience}}" placeholder="" class="form-control" type="text" name="provience">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Country <span class="required"></span></label>
+                                    <input value="{{ fields.country|default('United Kingdom') }}" readonly="true" class="form-control" type="text" name="country">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="input-group image-preview form-group">
+                                    <label>Profile Image: <span class="required"></span></label>
+                                    <input type="text" placeholder="Upload Profile Image" class="form-control image-preview-filename" disabled="disabled" data-toggle="tooltip" data-html="true" title="{{ errors.error_image|raw }}">
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title">Browse</span>
+                                        <input type="file" accept="file_extension" name="userfile" />
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>About yourself <span class="required"></span></label>
+                                    <textarea cols="6" rows="8" placeholder="" class="form-control" name="about_me">{{ fields.about_me}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Educational Detail</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        {% if education|length > 0 %}
+                            {% for edu in education %}
+                                <div class="profile-edit row">
+                                    <input type="hidden" name="eduId[]" value="{{edu.id|e}}"/>
+                                    {% if loop.index!=1 %}
+                                        <span onclick="window.profile.deleteEdu(this)" class="cstm-del-btn glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                    {% endif %}
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Degree Title <span class="required"></span></label>
+                                            <input placeholder="Degree Title" class="form-control" type="text" name="degree_title[]" value="{{ edu.title|e }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>University/College <span class="required"></span></label>
+                                            <input placeholder="University/College" class="form-control" type="text" name="degree_college[]" value="{{ edu.college|e }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Degree start Date <span class="required"></span></label>
+                                            <input placeholder="Pick Date" class="form_date form-control" type="text" name="degree_start_date[]" value="{{ edu.start_date|e }}" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Degree End Date <span class="required"></span></label>
+                                            <input placeholder=" Pick Date" class="form_date not-date form-control" type="text" name="degree_end_date[]" value="{{ edu.end_date|e }}" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Description <span class="required"></span></label>
+                                            <textarea id="jbeditor{{ loop.index }}"cols="6" rows="8" placeholder="" class="form-control" name="degree_description[]">{{ edu.description|raw }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="profile-edit row">
+                                <input type="hidden" name="eduId[]" value=""/>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Degree Title <span class="required"></span></label>
+                                        <input placeholder="Degree Title" class="form-control" type="text" name="degree_title[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>University/College <span class="required"></span></label>
+                                        <input placeholder="University/College" class="form-control" type="text" name="degree_college[]">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Degree start Date <span class="required"></span></label>
+                                        <input placeholder="Pick Date" class="form_date form-control" type="text" name="degree_start_date[]" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Degree End Date <span class="required"></span></label>
+                                        <input placeholder=" Pick Date" class="form_date not-date form-control" type="text" name="degree_end_date[]" data-date-format="dd-mm-yyyy">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Description <span class="required"></span></label>
+                                        <textarea id="jbeditor" cols="6" rows="8" placeholder="" class="form-control" name="degree_description[]"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-12 col-sm-12">
+                            <a  onclick="window.profile.addEducationBlcok(this)" class="btn btn-default pull-right"> Add More <i class="fa fa-angle-right"></i></a>        
+                        </div>
+                    </div>
+                    <div class="heading-inner first-heading">
+                        <p class="title">Job Experience</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        {% if experience|length >0 %}
+                            {% for exp in experience %}
+                                <div class="profile-edit row">
+                                    <input type="hidden" name="expId[]" value="{{ exp.id|e }}"/>
+                                    {% if loop.index!=1 %}
+                                        <span onclick="window.profile.deleteExp(this)" class="cstm-del-btn glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                    {% endif %}
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Position <span class="required"></span></label>
+                                            <input placeholder="Position Title" class="form-control" type="text" name="job_profile[]" value="{{ exp.profile|e }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Company <span class="required"></span></label>
+                                            <input placeholder="Company Name" class="form-control" type="text" name="job_company[]" value="{{ exp.company|e }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job start Date <span class="required"></span></label>
+                                            <input placeholder="Pick Date" class="form_date form-control" type="text" name="job_start_date[]" value="{{ exp.start_date|e }}" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job End Date <span class="required"></span></label>
+                                            <input placeholder=" Pick Date" class="form_date not-date form-control" type="text" name="job_end_date[]" value="{{ exp.end_date|e }}" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Description <span class="required"></span></label>
+                                            <textarea id="exeditor{{ loop.index }}" cols="6" rows="8" placeholder="" class="form-control" name="job_description[]">{{ exp.description|raw }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="profile-edit row">
+                                    <input type="hidden" name="expId[]" value=""/>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Position <span class="required"></span></label>
+                                            <input placeholder="Position Title" class="form-control" type="text" name="job_profile[]">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Company <span class="required"></span></label>
+                                            <input placeholder="Company Name" class="form-control" type="text" name="job_company[]">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job start Date <span class="required"></span></label>
+                                            <input placeholder="Pick Date" class="form_date form-control" type="text" name="job_start_date[]" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job End Date <span class="required"></span></label>
+                                            <input placeholder=" Pick Date" class="form_date not-date form-control" type="text" name="job_end_date[]" data-date-format="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label>Description <span class="required"></span></label>
+                                            <textarea id="exeditor" cols="6" rows="8" placeholder="" class="form-control" name="job_description[]"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endif %}
+                        <div class="col-md-12 col-sm-12">
+                            <a onclick="window.profile.addExperienceBlock(this)" class="btn btn-default pull-right"> Add More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="heading-inner first-heading">
+                        <p class="title">Add Skills</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        {% if skills|length >0 %}
+                            {% for skill in skills %}
+                                <div class="profile-edit row">
+                                    <input type="hidden" name="skillId[]" value="{{ skill.id|e }}"/>
+                                    {% if loop.index!=1 %}
+                                        <span onclick="window.profile.deleteSkill(this)" class="cstm-del-btn glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                                    {% endif %}
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Skill Name <span class="required"></span></label>
+                                            <input placeholder="Skill Name" class="form-control" type="text" name="skill_name[]" value="{{ skill.name|e }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="profile-edit row">
+                                <input type="hidden" name="skillId[]" value=""/>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Skill Name <span class="required"></span></label>
+                                        <input placeholder="Skill Name" class="form-control" type="text" name="skill_name[]">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-md-12 col-sm-12">
+                            <a onclick="window.profile.addSkillBlock(this)" class="btn btn-default pull-right"> Add More <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="heading-inner first-heading">
+                        <p class="title">Social Links</p>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="profile-edit row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Facebook <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.facebook|raw }}</div>
+                                    <input placeholder="Profile URL" name="facebook_url" value="{{ user.facebook_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Twitter <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.twitter|raw }}</div>
+                                    <input placeholder="Profile URL" name="twitter_url" value="{{ user.twitter_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>LinkedIn <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.linkedin|raw }}</div>
+                                    <input placeholder="Profile URL" name="linkedin_url" value="{{ user.linkedin_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Google Pluse <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.googleplus|raw }}</div>
+                                    <input placeholder="Profile URL" name="googleplus_url" value="{{ user.googleplus_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <input class="btn btn-default pull-right" type="submit" value="Save Profile" name="edit" />
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% if message=='success' %}
+<script type="text/javascript">
+    setTimeout(function(){
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "progressBar": true,
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success("Profile updated successfully!",{timeOut: 5000});
+    },1000);
+</script>
+{% endif %}
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                   {% if errors|length > 0 %}
+                        jQuery("[data-toggle='tooltip']").tooltip("show");
+                   {% endif %}
+                   jQuery("textarea[id^='jbeditor'],textarea[id^='exeditor']").each(function(i,ele){
+                       CKEDITOR.replace(ele.id);
+                   });                   
+                });
+                jQuery("form").on("submit",function(){
+                    var flag = true;
+                    jQuery(".form_date").not(".not-date").each(function(i,ele){
+                        var date = jQuery(ele).val();
+                        if(date != "" && !window.common.dateFormat(date)){
+                            alert("Please enter correct date format");
+                            flag = false;
+                            jQuery(ele).focus();
+                            return false;
+                        }
+                    });
+                    return flag;
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

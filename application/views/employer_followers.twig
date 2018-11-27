@@ -1,0 +1,67 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Careers within the construction Industry covers all levels of the development procedure & construction skills community - Plan to satisfy future employment and advantage needs. Apply now & find Your ultimate Job!">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Need Employers in Construction Industry | Urgent Openings</title>
+{% endblock %}
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'employer_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Followers List</p>
+                    </div>
+                    <div class="follower-section">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="" id="followers">
+                                <ul class="list-group list-group-dividered list-group-full">
+                                    {% if followers|length == 0 %}
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <h4 class="search-result-text">You have no followers yet.</h4>
+                                        </div>
+                                    {% endif %}
+                                    {% for candidate in followers %}
+                                        <li class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a class="avatar avatar-online" href="/home/profile/{{ candidate.user_id_fk }}">
+                                                        <img src="/uploads/{{ candidate.profile_image|default('profile.jpg') }}" class="img-responsive" alt="Construction courses in UK
+">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="pull-right">
+                                                        <a href="/home/profile/{{ candidate.user_id_fk }}"><button type="button" class="btn btn-default btn-sm">View Profile</button></a>
+                                                    </div>
+                                                    <div><a class="name" href="/home/profile/{{ candidate.user_id_fk }}">{{ candidate.first_name~" "~candidate.last_name}}</a></div>
+                                                    <small>{{ candidate.email }}</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

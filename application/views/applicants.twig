@@ -1,0 +1,118 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="breadcrumb-search parallex candidate-list">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-8 col-sm-12 col-md-offset-2 col-xs-12 nopadding">
+                    <div class="search-form-contaner">
+                        <form method="post" class="form-inline">
+                            <div class="col-md-10 col-sm-5 col-xs-12 nopadding">
+                                <div class="form-group">                                
+                                    <input type="text" autocomplete="off" onkeyup="" class="form-control" name="keyword" placeholder="Search Keyword" value="{{ keyword }}">
+                                    <i class="icon-magnifying-glass"></i>
+                                </div>                            
+                                <div id="keywords">
+                                    <ul class="drop-down-multilevel effect-fade"></ul>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-12 nopadding">
+                                <div class="form-group form-action">
+                                    <input type="button" name="applicantSearch" value="Search" class="btn btn-default btn-search-submit" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="categories-list-page light-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    {% if candidates|length == 0 %}
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <h4 class="search-result-text">No Candidate Found !</h4>
+                        </div>
+                    {% endif %}
+                    {% for candidate in candidates %}
+                    	<div class="profile-content">
+                            <div class="card">
+                                <div class="firstinfo">
+                                    <a href="/home/profile/{{ candidate.user_id_fk|e }}"><img src="/uploads/{{ candidate.profile_image|default('profile.jpg') }}" alt="Best Construction jobs" class="img-circle img-responsive" /></a>
+                                    <div class="profileinfo">
+                                        <h1> <a href="/home/profile/{{ candidate.user_id_fk|e }}"> {{ candidate.first_name|capitalize ~" "~candidate.last_name|capitalize }} </a></h1>
+                                        <h3>{{ candidate.trade }}</h3>
+                                        {% if candidate.about_me != empty %}
+                                            <p class="bio">{{ candidate.about_me|raw|slice(0,120) }}...
+                                            <a href="/home/profile/{{ candidate.user_id_fk|e }}">Read More</a>
+                                            </p>
+                                        {% endif %}
+                                        <div class="profile-skills">
+                                            {% set skills = candidate.skills|split(',') %}
+                                            {% for skill in skills %}
+                                                {% if skill != null %}
+                                        	       <span> {{ skill }} </span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="hire-btn">
+                                            {% if candidate.shortlisted %}
+                                        	   <a href="javascript:void(0);" data-id="{{ candidate.user_id_fk|e }}" onclick="window.dashboard.shortlist(this)" class="btn-primary cstm-btn" ><i class="fa fa-filter"></i> Shortlisted</a>
+                                            {% else %}
+                                                <a href="javascript:void(0);" data-id="{{ candidate.user_id_fk|e }}" onclick="window.dashboard.shortlist(this)" class="btn-default" ><i class="fa fa-filter"></i> Shortlist</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="pagination-box clearfix">
+                            <div class="cstm-pagination pagination">
+                                {{ links|raw }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# <div class="col-md-4 col-sm-12 col-xs-12">
+                    <aside>
+                        <div class="widget">
+                            <div class="widget-heading"><span class="title">By Trades</span></div>
+                            <ul class="categories-module">
+                                {% set selectedCats = searchCategories|split(",") %}
+                                {% for cat in categories if cat.id != 1 %}
+                                    <li><input type="checkbox" {% if cat.id in selectedCats %} checked {% endif %} name="candidatecat" value="{{ cat.id }}"> <a href=""> {{ cat.job_category }}<span>({{ cat.userCount }})</span> </a> </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </aside>
+                </div> #}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script>
+                jQuery("input[name='applicantSearch']").on("click",function(e){
+                    var searchData = new Object();
+                    searchData["keyword"]       =   jQuery("input[name='keyword']").val().trim();
+                    window.dashboard.applicantSearch(searchData,{{job_id|e}});
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

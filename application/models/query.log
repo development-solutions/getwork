@@ -1,0 +1,11 @@
+SELECT `j`.*, (select count(*) from jobs_applied as ja where ja.job_id_fk=j.id) as applications, `ei`.`logo`, `ei`.`company_name`, `jt`.`job_type`, `st`.`salary_type`
+FROM `jobs` as `j`
+JOIN `employer_personal_info` as `ei` ON `j`.`emp_id_fk`=`ei`.`user_id_fk`
+JOIN `job_type` as `jt` ON `j`.`type_fk`=`jt`.`id`
+JOIN `salary_type` as `st` ON `j`.`salary_type_fk`=`st`.`id`
+WHERE `j`.`deleted` =0
+AND `j`.`approved` = 1
+AND `j`.`active` = 1
+AND `j`.`featured` =0
+ORDER BY `j`.`id` DESC
+ LIMIT 5

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {% if candidates|length == 0 %}
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <h4 class="search-result-text">No Candidate Found !</h4>
+                    </div>
+                {% endif %}
+                {% for candidate in candidates %}
+                	<div class="profile-content">
+                        <div class="card">
+                            <div class="firstinfo">
+                                <a href="/home/profile/{{ candidate.user_id_fk|e }}"><img src="/uploads/{{ candidate.profile_image|default('profile.jpg') }}" alt="Construction courses in UK" class="img-circle img-responsive" /></a>
+                                <div class="profileinfo">
+                                    <h1> <a href="/home/profile/{{ candidate.user_id_fk|e }}"> {{ candidate.first_name|capitalize ~" "~candidate.last_name|capitalize }} </a></h1>
+                                    <h3>{{ candidate.trade }}</h3>
+                                    {% if candidate.about_me != empty %}
+                                        <p class="bio">{{ candidate.about_me|raw|slice(0,120) }}...
+                                        <a href="/home/profile/{{ candidate.user_id_fk|e }}">Read More</a>
+                                        </p>
+                                    {% endif %}
+                                    <div class="profile-skills">
+                                        {% set skills = candidate.skills|split(',') %}
+                                        {% for skill in skills %}
+                                            {% if skill != null %}
+                                    	       <span> {{ skill }} </span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="hire-btn">
+                                        {% if candidate.shortlisted %}
+                                    	   <a href="javascript:void(0);" data-id="{{ candidate.user_id_fk|e }}" onclick="window.dashboard.shortlist(this)" class="btn-primary cstm-btn" ><i class="fa fa-filter"></i> Shortlisted</a>
+                                        {% else %}
+                                            <a href="javascript:void(0);" data-id="{{ candidate.user_id_fk|e }}" onclick="window.dashboard.shortlist(this)" class="btn-default" ><i class="fa fa-filter"></i> Shortlist</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                    <div class="pagination-box clearfix">
+                        <div class="cstm-pagination pagination">
+                            {{ links|raw }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,459 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+<section class="main-section parallex">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 col-md-offset-1 col-xs-12 nopadding">
+                <div class="search-form-contaner">
+                    <h1 class="search-main-title">A site solely dedicated to the construction trade</h1>
+                    <form action="/home/jobs" method="post" class="form-inline">
+                        <div class="col-md-5 col-sm-5 col-xs-12 nopadding">
+                            <div class="form-group">                                
+                                <input autocomplete="off" type="text" onkeyup="window.common.getJobTitle(this.value)" class="form-control" name="keyword" placeholder="Search Keyword" value="">
+                                <i class="icon-magnifying-glass"></i>
+                            </div>                            
+                            <div id="keywords">
+                                <ul class="drop-down-multilevel effect-fade nopadding"></ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-12 nopadding">
+                            <div class="form-group">
+                                 <input id="autocomplete" onFocus="window.common.geolocate()" type="text" class="form-control" name="location" placeholder="Search Location" value="">
+                                <i class="icon-map-pin"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 nopadding">
+                            <div class="form-group form-action">
+                                <input type="submit" name="search" value="Search" class="btn btn-default btn-search-submit" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="featured-jobs nopadding">
+    <div class="">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 cstm-featured-col-left">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title black cstm-featured-head">
+                        <h1>Featured Jobs</h1>
+                        
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="featured-image-box">
+                        <div class="img-box cstm-featured-img-box"><img src="../images/trades/companies/5.png" class="img-responsive center-block" alt="Construction"></div>
+                        <div class="content-area cstm-featured-content-area">
+                            <div class="">
+                                <h4><a href=""> Graphic Designer </a></h4>
+                                <p> Confidential Int. Pvt. Ltd. Pakistan </p>
+                            </div>
+                            <div class="feature-post-meta"> <a href=""> <i class="fa fa-clock-o"></i> 1 days ago</a> <a href="" class="mata-detail part">Part Time</a> </div>
+                            <div class="feature-post-meta-bottom"> <span>$500<small>/ month</small></span> <a href="" class="apply pull-right"> Apply Now</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="featured-image-box">
+                        <div class="img-box cstm-featured-img-box"><img src="../images/trades/4.png" class="img-responsive center-block" alt="best Railway jobs"></div>
+                        <div class="content-area cstm-featured-content-area">
+                            <div class="">
+                                <h4><a href=""> Software Engineer </a></h4>
+                                <p> Confidential Int. Pvt. Ltd. Pakistan </p>
+                            </div>
+                            <div class="feature-post-meta"> <a href=""> <i class="fa fa-clock-o"></i> 5 days ago</a> <a href="" class="mata-detail remote">Remote</a> </div>
+                            <div class="feature-post-meta-bottom"> <span>$900<small>/ month</small></span> <a href="" class="apply pull-right"> Apply Now</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="load-more-btn">
+                        <button class="btn-default cstm-btn-bg-black"> View All <i class="fa fa-angle-right"></i> </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 cstm-featured-col-right">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title white cstm-featured-head">
+                        <h1>Featured Courses</h1>
+                        
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="featured-image-box">
+                        <div class="img-box cstm-featured-img-box"><img src="../images/trades/companies/2.png" class="img-responsive center-block" alt="Post free jobs in UK"></div>
+                        <div class="content-area cstm-featured-content-area">
+                            <div class="">
+                                <h4><a href=""> PHP,HTML </a></h4>
+                                <p> Confidential Int. Pvt. Ltd. Pakistan </p>
+                            </div>
+                            <div class="feature-post-meta"> <a href=""> <i class="fa fa-clock-o"></i> 1 days ago</a> <a href="" class="mata-detail part">Part Time</a> </div>
+                            <div class="feature-post-meta-bottom"> <span>$500<small>/ month</small></span> <a href="" class="apply pull-right"> Apply Now</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="featured-image-box">
+                        <div class="img-box cstm-featured-img-box"><img src="../images/trades/companies/5.png" class="img-responsive center-block" alt="UK Construction"></div>
+                        <div class="content-area cstm-featured-content-area">
+                            <div class="">
+                                <h4><a href="">JAVA</a></h4>
+                                <p> Confidential Int. Pvt. Ltd. Pakistan </p>
+                            </div>
+                            <div class="feature-post-meta"> <a href=""> <i class="fa fa-clock-o"></i> 5 days ago</a> <a href="" class="mata-detail remote">Remote</a> </div>
+                            <div class="feature-post-meta-bottom"> <span>$900<small>/ month</small></span> <a href="" class="apply pull-right"> Apply Now</a> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="load-more-btn">
+                        <button class="btn-default"> View All <i class="fa fa-angle-right"></i> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cat-tabs cat-tab-index-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {# <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="cat-title">Browse Jobs</div>
+                </div> #}
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"> 
+                            <!-- Tabs -->
+                            <ul class="nav panel-tabs">
+                                <li class="active"> <a href="#tab1" data-toggle="tab"><i class="icofont icon-ribbon"></i><span class="hidden-xs hidden-sm">Recent Jobs</span></a> </li>
+                                <li> <a href="#tab2" data-toggle="tab"><i class="icofont icon-layers"></i><span class="hidden-xs hidden-sm">Recent Courses</span></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active animated fadeInLeft" id="tab1">
+                                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                    {% for job in jobs %}
+                                        <div class="job-box">
+                                            <div class="col-md-1 col-sm-1 col-xs-12 nopadding  hidden-xs hidden-sm">
+                                                <div class="comp-logo"> <img src="../../images/company/5.png" class="img-responsive" alt="scriptsbundle Construction"> </div>
+                                            </div>
+                                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                                <div class="job-title-box"> <a href="#">
+                                                    <div class="job-title">{{ job.title }}</div>
+                                                    </a> <a href="#"><span class="comp-name">{{ job.company_name }}</span></a> </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 col-xs-6">
+                                                <div class="job-location"> <i class="fa fa-location-arrow"></i> {{ job.location }}</div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 col-xs-6">
+                                                <div class="job-type jt-remote-color"> <i class="fa fa-clock-o"></i> {{job.job_type }} </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                <a href="/home/jobdetails/{{ job.id }}" class="btn btn-primary btn-custom">Details</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tab-pane animated fadeInRight" id="tab2">
+                                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                    <div class="job-box">
+                                        <div class="col-md-1 col-sm-1 col-xs-12 nopadding  hidden-xs hidden-sm">
+                                            <div class="comp-logo"> <img src="http://frescoserver.com/getwork/images/company/5.png" class="img-responsive" alt="scriptsbundle Jobs in London"> </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="job-title-box"> <a href="#">
+                                                <div class="job-title"> Technical Documentation Specialist</div>
+                                                </a> <a href="#"><span class="comp-name">conversi Pvt. Ltd. United States</span></a> </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-location"> <i class="fa fa-location-arrow"></i> New York </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-type jt-full-time-color"> <i class="fa fa-clock-o"></i> Full time </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <button class="btn btn-primary btn-custom">Apply Now</button>
+                                        </div>
+                                    </div>
+                                    <div class="job-box">
+                                        <div class="col-md-1 col-sm-1 col-xs-12 nopadding  hidden-xs hidden-sm">
+                                            <div class="comp-logo"> <img src="http://frescoserver.com/getwork/images/company/1.png" class="img-responsive" alt="scriptsbundle London jobs"> </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="job-title-box"> <a href="#">
+                                                <div class="job-title"> Technical Network Director</div>
+                                                </a> <a href="#"><span class="comp-name">conversi Pvt. Ltd. Australia</span></a> </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-location"> <i class="fa fa-location-arrow"></i> Melbourne </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-type jt-full-time-color"> <i class="fa fa-clock-o"></i> Full time </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <button class="btn btn-primary btn-custom">Apply Now</button>
+                                        </div>
+                                    </div>
+                                    <div class="job-box">
+                                        <div class="col-md-1 col-sm-1 col-xs-12 nopadding  hidden-xs hidden-sm">
+                                            <div class="comp-logo"> <img src="http://frescoserver.com/getwork/images/company/3.png" class="img-responsive" alt="scriptsbundle Construction courses"> </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="job-title-box"> <a href="#">
+                                                <div class="job-title"> Looking for Bootstrap designer</div>
+                                                </a> <a href="#"><span class="comp-name">conversi Pvt. Ltd. Pakistan</span></a> </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-location"> <i class="fa fa-location-arrow"></i> Lahore </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-type jt-full-time-color"> <i class="fa fa-clock-o"></i> Full time </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <button class="btn btn-primary btn-custom">Apply Now</button>
+                                        </div>
+                                    </div>
+                                    <div class="job-box">
+                                        <div class="col-md-1 col-sm-1 col-xs-12 nopadding  hidden-xs hidden-sm">
+                                            <div class="comp-logo"> <img src="http://frescoserver.com/getwork/images/company/4.png" class="img-responsive" alt="scriptsbundle Railway construction"> </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                            <div class="job-title-box"> <a href="#">
+                                                <div class="job-title"> Assistant Engineer (IT/Networks)</div>
+                                                </a> <a href="#"><span class="comp-name">conversi Pvt. Ltd. Malaysia</span></a> </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-location"> <i class="fa fa-location-arrow"></i> Singapore </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-6">
+                                            <div class="job-type jt-full-time-color"> <i class="fa fa-clock-o"></i> Full time </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <button class="btn btn-primary btn-custom">Apply Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="category-section-3 light-blue nopadding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title black cstm-featured-head">
+                        <h1>Choose Your Trade</h1>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box">
+                        <div class="category-section-3-box-inner"> 
+                            <h2> Civil Construction </h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg">
+                        <div class="category-section-3-box-inner">
+                            <h2> Railway Construction</h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg1">
+                        <div class="category-section-3-box-inner"> 
+                            <h2> Graduate Construction </h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg2">
+                        <div class="category-section-3-box-inner">
+                            <h2> Other Construction </h2>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--trade category saction-->
+
+        <div class="row">
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        </div>
+        <!--category section end-->
+
+    </div>
+</section>
+<section class="category-section-3 light-blue nopadding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="Heading-title black cstm-featured-head">
+                        <h1>Courses</h1>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg-courses">
+                        <div class="category-section-3-box-inner"> 
+                            <h2> Civil Construction </h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg">
+                        <div class="category-section-3-box-inner">
+                            <h2> Railway Construction</h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg1">
+                        <div class="category-section-3-box-inner"> 
+                            <h2> Graduate Construction </h2>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="category-section-3-box backg2">
+                        <div class="category-section-3-box-inner">
+                            <h2> Other Construction </h2>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--trade category saction-->
+
+        <div class="row">
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        	<div class="col-md-3 col-sm-3 col-xs-12 trade-category">
+        		<ul>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        			<li><a href="#">Accountancy jobs</a><strong><small>15,068</small></strong></li>
+        		</ul>
+        	</div>
+        </div>
+        <!--category section end-->
+
+    </div>
+    </div>
+</section>
+<div class="brand-logo-area clients-bg">
+    <div class="clients-list">
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/1.png" class="img-responsive" alt="Brand Image London jobs" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/3.png" class="img-responsive"  alt="Brand Image Construction jobs" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/4-1.png" class="img-responsive"  alt="Brand Image Post free jobs" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/8.png" class="img-responsive"  alt="Brand Image Post courses" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/9.png" class="img-responsive"  alt="Brand Image Post free courses" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/11.png" class="img-responsive"  alt="Brand Image Construction jobs" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/ipb.png" class="img-responsive"  alt="Brand Image Construction courses" /></a> </div>
+        <div class="client-logo"> <a href="#"><img src="../images/trades/clients/7.png" class="img-responsive"  alt="Brand Image Construction jobs in UK" /></a> </div>
+    </div>
+</div>
+
+{% endblock content %}

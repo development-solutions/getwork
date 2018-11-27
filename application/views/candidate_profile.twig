@@ -1,0 +1,226 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visit getwork.construction if you are finding the job in construction industry in UK and get salary as per your skills and knowledge">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Construction Jobs in London | Requirement for Construction Jobs in UK</title>
+{% endblock %}
+{% block content %}
+
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="about-image">
+                        <img class="img-responsive" src="/uploads/{{ profile.profile_image|default('profile.jpg') }}" alt="Post free courses">
+                    </div>
+                    {# <div class="resume-social">
+                        <ul class="social-network social-circle onwhite">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin +"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div> #}
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="resume-box">
+                        <div class="heading-inner">
+                            <p class="title">Personal Information</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="my-contact">
+                                    <div class="contact-icon">
+                                        <span class="icon-profile-female"></span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Name: </h4>
+                                        <p>{{ profile.first_name~" "~profile.last_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="my-contact">
+                                    <div class="contact-icon">
+
+                                        <span class="icon-calendar"></span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Date of Birth: </h4>
+                                        <p>{{ profile.d_o_b|default("Not Provided") }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if logged_in %}
+                                {% if shortlisted %}
+                                    <div class="col-md-4 col-xs-12 col-sm-4">
+                                        <a  href="javascript:void(0);" class="btn btn-primary cstm-btn"><i class="fa fa-filter"></i> Shortlisted</a>
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-4 col-xs-12 col-sm-4">
+                                        <a data-id="{{ profile.user_id_fk }}" onclick="window.dashboard.shortlist(this)" href="javascript:void(0);" class="btn btn-default"><i class="fa fa-filter"></i> Shortlist</a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="my-contact">
+                                    <div class="contact-icon">
+                                        <span class="icon-map-pin"></span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Address: </h4>
+                                        <p>{{ profile.address|default("Not Provided") }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-sm-4">
+                                <div class="my-contact">
+                                    <div class="contact-icon">
+                                        <span class="icon-flag"></span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h4>Nationality: </h4>
+                                        <p>{{ profile.country|default("Not Provided") }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if logged_in %}
+                                <div class="col-md-4 col-xs-12 col-sm-4">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="jQuery('#to').val({{ profile.user_id_fk }})" class="btn btn-info cstm-btn"><i class="fa fa-envelope-o"></i> Contact Me</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <p class="about-me">{{ profile.about_me }}</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="resume-box">
+                        <div class="heading-inner">
+                            <p class="title">Educational Information</p>
+                        </div>
+                        {% if education|length == 0 %}
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h4 class="search-result-text">Not Provided</h4>
+                            </div>
+                        {% endif %}
+                        {% for edu in education %}
+                            <div class="row education-box">
+                                <div class="col-md-4 col-xs-12 col-sm-4">
+                                    <div class="resume-icon">
+                                        <span class="icon-clipboard"></span>
+                                    </div>
+                                    <div class="insti-name">
+                                        <h4>Insitute of Managment</h4>
+                                        <span>{{ edu.start_date~" to "~edu.end_date}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-8 col-sm-8">
+                                    <div class="degree-info">
+                                        <h4>{{ edu.title }}</h4>
+                                        <p>{{ edu.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="resume-box">
+                        <div class="heading-inner">
+                            <p class="title">Work Experience</p>
+                        </div>
+                        {% if experience|length == 0 %}
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h4 class="search-result-text">Not Provided</h4>
+                            </div>
+                        {% endif %}
+                        {% for exp in experience %}
+                            <div class="row education-box">
+                                <div class="col-md-4 col-xs-12 col-sm-4">
+                                    <div class="resume-icon">
+                                        <span class="icon-pencil"></span>
+                                    </div>
+                                    <div class="insti-name">
+                                        <h4>Company</h4>
+                                        <span>{{ exp.start_date~" to "~exp.end_date }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-8 col-sm-8">
+                                    <div class="degree-info">
+                                        <h4>{{ exp.profile }}</h4>
+                                        <p>{{ exp.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="heading-inner">
+                        <p class="title">Skills/Certifications</p>
+                    </div>
+                    {% if skills|length == 0 %}
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <h4 class="search-result-text">Not Provided</h4>
+                        </div>
+                    {% endif %}
+                    <div class="row">
+                        {% for skill in skills %}
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                        <span class="sr-only">100% Complete</span>
+                                    </div>
+                                    <span class="progress-type">{{ skill.name|e }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% if logged_in %}
+<div class="modal fade apply-job-modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body contact-form-container">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span></button>
+                <div class="job-modal">
+                    <h2>Send Message to Candidate</h2>
+                </div>
+                <form id="job-form">
+                    <input id="to" type="hidden" name="to" value="" />
+                    <div class="row clearfix">
+                        <div class="column col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" readonly="true" name="subject" value="{{ user.company_name }}" placeholder="From" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" rows="6" class="form-control" placeholder="Write your message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="text-center">
+                                <button type="button" onclick="window.dashboard.sendMessage()" class="btn btn-default btn-block">Send Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

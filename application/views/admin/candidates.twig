@@ -1,0 +1,49 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'admin/admin_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {% include 'admin/admin_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Edit Profile</p>
+                    </div>
+                    <div class="follower-section">
+                        <div class="col-md-12 col-sm-126 col-xs-12">
+                            <div class="" id="followers">
+                                <ul class="list-group list-group-dividered list-group-full">
+                                    {% for candidate in candidates %}
+                                        <li class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a class="avatar avatar-online" href="javascript:void(0)">
+                                                        <img src="/uploads/{{ candidate.profile_image|default('profile.jpg') }}" class="img-responsive" alt="">
+                                                        {# <i></i> #}
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="pull-right">
+                                                        <button type="button" class="btn btn-default btn-sm">Detail</button>
+                                                    </div>
+                                                    <div><a class="name" href="javascript:void(0)">{{ candidate.first_name~" "~candidate.last_name}}</a></div>
+                                                    <small>{{ candidate.email}}</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

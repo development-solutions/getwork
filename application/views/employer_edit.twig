@@ -1,0 +1,162 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'employer_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Edit Profile</p>
+                    </div>
+                    <div class="profile-edit row">
+                        <form action="/dashboard/profile_edit" method="post" enctype="multipart/form-data">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Company Name: <span class="required"></span></label>
+                                    <input type="text" placeholder="" name="company_name" value="{{ user.company_name }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Trade <span class="required"></span></label>
+                                    <input type="text" placeholder="e.g. railway,civil" name="type_of_business" value="{{ user.type_of_business }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group"> 
+                                    <label>No. of Employees <span class="required"></span></label>
+                                    <select name="employees" class="form-control">
+                                        <option value="0-10" {% if user.employees == "0-10" %} selected {% endif %}>0-10</option>
+                                        <option value="10-30" {% if user.employees == "10-30" %} selected {% endif %}>10-30</option>
+                                        <option value="30-50" {% if user.employees == "30-50" %} selected {% endif %}>30-50</option>
+                                        <option value="50-100" {% if user.employees == "50-100" %} selected {% endif %}>50-100</option>
+                                        <option value="100+" {% if user.employees == "100+" %} selected {% endif %}>100+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="input-group image-preview form-group">
+                                    <label>Profile Image: <span class="required">*</span></label>
+                                    <input type="text" placeholder="Upload Profile Image" class="form-control image-preview-filename" disabled="disabled" data-toggle="tooltip" data-html="true" title="{{ error_image|raw }}">
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                    </button>
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="glyphicon glyphicon-folder-open"></span>
+                                        <span class="image-preview-input-title">Browse</span>
+                                        <input type="file" accept="file_extension" name="logo" />
+                                    </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Address <span class="required"></span></label>
+                                    <input type="text" placeholder="first line of address" name="address" value="{{ user.address }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Telephone: <span class="required"></span></label>
+                                    <input type="text" placeholder="" name="phone" value="{{ user.phone }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>City: <span class="required"></span></label>
+                                    <input type="text" placeholder="e.g. london" name="city" value="{{ user.city }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Post Code <span class="required"></span></label>
+                                    <input value="{{ user.postcode}}" placeholder="e.g. E16 1DN" class="form-control" type="text" name="postcode">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>County: <span class="required"></span></label>
+                                    <input type="text" placeholder="e.g. middlesex" name="provience" value="{{ user.provience }}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Country: <span class="required"></span></label>
+                                    <input value="{{ user.country|default('United Kingdom') }}" readonly="true" type="text" placeholder="" name="country" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>About Company <span class="required"></span></label>
+                                    <textarea cols="6" rows="8" placeholder="" name="company_description" class="form-control">{{ user.company_description }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>Website <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.website|raw }}</div>
+                                    <input placeholder="Website URL" name="website_url" value="{{ user.website_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Facebook <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.facebook|raw }}</div>
+                                    <input placeholder="Facebook URL" name="facebook_url" value="{{ user.facebook_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Twitter <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.twitter|raw }}</div>
+                                    <input placeholder="Twitter URL" name="twitter_url" value="{{ user.twitter_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>LinkedIn <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.linkedin|raw }}</div>
+                                    <input placeholder="LinkedIn URL" name="linkedin_url" value="{{ user.linkedin_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label>Google Pluse <span class="required"></span></label>
+                                    <div class="register_error">{{ errors.googleplus|raw }}</div>
+                                    <input placeholder="Profile URL" name="googleplus_url" value="{{ user.googleplus_url }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                 <input class="btn btn-default pull-right" value="Save Profile" name="edit" type="submit"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                   {% if error_image %}
+                        jQuery("[data-toggle='tooltip']").tooltip("show");
+                   {% endif %}
+                });
+            </script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

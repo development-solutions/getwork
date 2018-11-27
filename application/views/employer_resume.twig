@@ -1,0 +1,87 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'employer_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Shortlisted Candidates</p>
+                    </div>
+                    <div class="resume-list">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                {% if resumes|length == 0 %}
+                                    <div class="col-md-8 col-sm-12 col-xs-12">
+                                        <h4 class="search-result-text">You haven't shortlisted any candidate yet.</h4>
+                                    </div>
+                                {% else %}
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th>Sr. #</th>
+                                            <th>Applicant Name</th>
+                                            <th>View Details</th>
+                                            <th>Send Message</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                {% endif %}
+                                <tbody>
+                                    {% for resume in resumes %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>
+                                                <h5>{{ resume.first_name|capitalize ~" "~resume.last_name|capitalize }}</h5></td>
+                                            <td><a class="btn btn-primary" href="/home/profile/{{ resume.applicant_id_fk|e }}"> View </a></td>
+                                            <td><a class="btn btn-info" data-toggle="modal" data-target="#myModal" onclick="jQuery('#to').val({{ resume.applicant_id_fk|e }})" href="#"> Message </a></td>
+                                            <td><a data-id="{{ resume.applicant_id_fk }}" onclick="window.dashboard.removeShortlist(this)" class="btn btn-danger" href="javascript:void(0)"> Delete </a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade apply-job-modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body contact-form-container">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span></button>
+                <div class="job-modal">
+                    <h2>Send Message to Candidate</h2>
+                </div>
+                <form id="job-form">
+                    <input id="to" type="hidden" name="to" value="" />
+                    <div class="row clearfix">
+                        <div class="column col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" value="" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" rows="6" class="form-control" placeholder="Write your message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="text-center">
+                                <button type="button" onclick="window.dashboard.sendMessage()" class="btn btn-default btn-block">Send Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

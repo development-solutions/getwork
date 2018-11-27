@@ -1,0 +1,143 @@
+{% extends "index.twig" %}
+{% block metatags %}
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="If you are searching for another Construction work in London, Getwork.construction can help you discover a vocation that matches your profile with for organizations enlisting now">
+    <meta name="author" content="GetWork">
+{% endblock %}
+{% block title %}
+    <title>Construction Job Recruitment – Get Work on Getwork.construction</title>
+{% endblock %}
+{% block navigation %}
+    {% include 'employer_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                {% include 'employer_sidebar.twig' %}
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Active jobs</p>
+                    </div>
+                    <div class="all-jobs-list-box2">
+                        {% if jobs|length == 0 %}
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h4 class="search-result-text">You have 0 active jobs.</h4>
+                            </div>
+                        {% endif %}
+                        {% for job in jobs %}
+                            <div class="job-box job-box-2 expire-box ribbon-content cstm-job-box">
+                                <div class="job-title-box">
+                                    <a href="/home/jobdetails/{{ job.id }}">
+                                        <div class="job-title">{{ job.title }}</div>
+                                    </a>
+                                    <a href="#"><span class="job-type comp-name">{{ job.company_name }}</span></a>
+                                </div>
+                                {% if job.approved == 0 %}
+                                    <div class="ribbon base"><span class="feature"> <i class="icon-document"></i>  Awating</span></div>
+                                {% elseif job.approved == -1 %}
+                                    <div class="ribbon base"><span class="feature"> <i class="icon-document"></i>  Disapproved</span></div>
+                                {% endif %}
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ job.location }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p><i class="fa fa-gbp" aria-hidden="true"></i> {{ job.salary|e ~"/"~ job.salary_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="joblistlogo"><img src="/uploads/{{ user.logo|default('logo.jpg') }}" alt="London jobs logo"></div>
+                                    </div>  
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <p class="jt-full-time-color"> <i class="fa fa-clock-o"></i> {{job.job_type }}</p>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <a href="/dashboard/job_applicants/{{job.id|e}}"><p><i class="fa fa-user"></i> {{ job.applications|e }} applications</p></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <p>{{ job.description|raw|slice(0,150) }}...<a href="/home/jobdetails/{{ job.id }}">Read More</a></p>
+                                    <div class="expire-job-box">
+                                        <span class="expire-date"> This job will Expire on <strong>{{ job.last_date|date("d M, Y") }}</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="expire-job-box">                                
+                                        <span class="pull-right">
+                                            <a href="/dashboard/edit_job/{{ job.id}}" class="btn btn-default"> Edit job</a>
+                                            <a data-id="{{ job.id|e }}" href="javascript:void(0);" onclick="window.dashboard.deletejob(this)" class="btn btn-danger"> Delete job</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# <div class="job-box job-box-2">
+                                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs hidden-sm">
+                                    <div class="comp-logo">
+                                        <a href="/dashboard/single/{{ job.id|e }}"><img src="../../images/company/5.png" class="img-responsive" alt="London Jobs scriptsbundle"> </a>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                    <div class="job-title-box">
+                                        <a href="/dashboard/single/{{ job.id|e }}">
+                                            <div class="job-title">{{ job.title|e}}</div>
+                                        </a>
+                                        <a href="#"><span class="comp-name">{{ job.location|e }}</span></a>
+                                        <a href="" class="job-type jt-full-time-color">
+                                            <i class="fa fa-clock-o"></i> {{ job.job_type|e }}
+                                        </a>
+                                    </div>
+                                    <div class="expire-job-box">                                
+                                        <span class="pull-right">
+                                            <a href="/dashboard/edit_job/{{ job.id}}" class="btn btn-default"> Edit job</a>
+                                            <a data-id="{{ job.id|e }}" href="javascript:void(0);" onclick="window.dashboard.deletejob(this)" class="btn btn-danger"> Delete job</a>
+                                        </span>
+                                    </div>
+                                    <p>{{ job.description|raw|slice(0,150) }}...<a href="/dashboard/single/{{ job.id|e }}">Read More</a></p>
+                                </div>
+                                <div class="job-salary">
+                                    <i class="fa fa-money"></i> {{ job.salary|e ~"/"~ job.salary_type }}
+                                </div>
+                            </div> #}
+                        {% endfor %}
+                    </div>
+                    {# <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                        <div class="pagination-box clearfix">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a>
+                                </li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript" src="../../js/dashboard.js"></script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

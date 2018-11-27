@@ -1,0 +1,167 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'admin/admin_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="single-job-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="heading-inner first-heading">
+                        <p class="title">Course Detail</p>
+                    </div>
+                    <div class="all-jobs-list-box2">
+                        <div class="job-box job-box-2 expire-box ribbon-content">
+                            <div class="job-title-box">
+                                <div class="courselogo"><img src="/images/logo.png" alt="logo"></div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p><strong>Price:</strong></p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p>{{ course.price }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p><strong>Duration:</strong></p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p> {{ course.duration }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p><strong>Qualification:</strong></p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p>{{ course.qualification }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p><strong>Awarded by:</strong></p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <p>{{ course.company_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 job-box job-box-2 expire-box ribbon-content">
+                            <h3>Description</h3>
+                            <p>{{ course.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <aside>
+                        <div class="apply-job">
+                            <a href="javascript:void(0)" data-id="{{ course.id }}" onclick="window.su.approveCourse(this)" class="btn btn-info cstm-btn"> Approve Course</a>
+                            <a href="javascript:void(0)" onclick="jQuery('#courseid').val({{ course.id }})" data-toggle="modal" data-target="#myModal" class="btn btn-danger"> Disapprove Course</a>
+                        </div>
+                        <div class="company-detail">
+                            <div class="company-img">
+                                <img src="/uploads/{{ course.logo|default('logo.jpg') }}" class="img-responsive" alt="">
+                            </div>
+                            <div class="company-contact-detail">
+                                <table>
+                                    <tr>
+                                        <th>Name:</th>
+                                        <td>{{ course.company_name|e }}</td>
+                                    </tr>
+                                    {# <tr>
+                                        <th>Email:</th>
+                                        <td>{{ job.email|e }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone:</th>
+                                        <td>{{ job.phone|e }}</td>
+                                    </tr> #}
+                                    <tr>
+                                        <th>Website:</th>
+                                        <td>{{ course.website_url|default("NA") }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Address:</th>
+                                        <td>{{ course.address|e }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </aside>
+                    {# <div class="single-job-map">
+                        <div id="map-contact"></div>
+                    </div>
+                    <div class="widget">
+                        <div class="widget-heading"><span class="title">Featured Jobs</span></div>
+                        <ul class="related-post">
+                            <li>
+                                <a href="#">Assistant Manager Procurement </a>
+                                <span><i class="fa fa-map-marker"></i>Managgo, WC </span>
+                                <span><i class="fa fa-calendar"></i>March 22, 2015 - Apr 07, 2016 </span>
+                            </li>
+                            <li>
+                                <a href="#">Marketing Professionals Required</a>
+                                <span><i class="fa fa-map-marker"></i>Homelando, New Vage </span>
+                                <span><i class="fa fa-calendar"></i>Sep 01, 2015 - Aug 09, 2016</span>
+                            </li>
+                            <li>
+                                <a href="#">Mobile App Programmers </a>
+                                <span><i class="fa fa-map-marker"></i>Homelando, New Vage </span>
+                                <span><i class="fa fa-calendar"></i>Feb 01, 2015 - March 09, 2016 </span>
+                            </li>
+                            <li>
+                                <a href="#">General Compliance Officer</a>
+                                <span><i class="fa fa-map-marker"></i>Arlington, VA </span>
+                                <span><i class="fa fa-calendar"></i>Jun 01, 2015 - Feb 09, 2016</span>
+                            </li>
+                        </ul>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade apply-job-modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body contact-form-container">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-close"></i></span></button>
+                <div class="job-modal">
+                    <h2>Equery About Course</h2>
+                </div>
+                <form id="job-form">
+                    <input id="courseid" type="hidden" name="courseid" value="" />
+                    <div class="row clearfix">
+                        <div class="column col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" readonly="true" name="subject" value="Job disapproved" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" rows="6" class="form-control" placeholder="Write your message" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="text-center">
+                                <button type="button" onclick="window.su.disapproveCourse()" class="btn btn-default btn-block">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% embed "footer.twig" %}
+        {% block customScripts %}
+            <script type="text/javascript" src="/js/suser.js"></script>
+        {% endblock customScripts%}
+    {% endembed %}
+{% endblock %}

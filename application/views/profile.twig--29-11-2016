@@ -1,0 +1,123 @@
+{% extends "index.twig" %}
+
+{% block navigation %}
+    {% include 'applicant_navigation.twig' %}
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard parallex">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                <div class="dashboard-header">
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="user-avatar ">
+                            <img src="../../images/users/12.jpg" alt="start with Construction courses in UK" class="img-responsive center-block "></a>
+                            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="rad-info-box rad-txt-success">
+                            <i class="icon icon-presentation"></i>
+                            <span class="title-dashboard">Followings</span>
+                            <span class="value"><span>250K</span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="rad-info-box rad-txt-success">
+                            <i class="icon icon-aperture"></i>
+                            <span class="title-dashboard">Jobs Applied</span>
+                            <span class="value"><span>200</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dashboard-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    {% include 'applicant_sidebar.twig' %}
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="job-short-detail">
+                        <div class="heading-inner">
+                            <p class="title">Profile detail</p>
+                        </div>
+                        <dl>
+                            <dt>First Name:</dt>
+                            <dd>{{ user.first_name|capitalize }}</dd>
+
+                            <dt>Last Name:</dt>
+                            <dd>{{ user.last_name|capitalize }}</dd>
+
+                            <dt>Date Of Birth:</dt>
+                            <dd>{{ user.d_o_b }}</dd>
+
+                            <dt>Phone:</dt>
+                            <dd>{{ user.phone|capitalize }}</dd>
+
+                            <dt>Email:</dt>
+                            <dd>{{ user.email|capitalize }}</dd>
+
+                            <dt>Last Education:</dt>
+                            <dd>{{ user.last_education|capitalize }}</dd>
+
+                            <dt>Address:</dt>
+                            <dd>{{ user.address|capitalize }}</dd>
+
+                            <dt>City:</dt>
+                            <dd>{{ user.city|capitalize }}</dd>
+
+                            <dt>Provience:</dt>
+                            <dd>{{ user.provience|capitalize }}</dd>
+
+                            <dt>Country:</dt>
+                            <dd>{{ user.country|capitalize }}</dd>
+                        </dl>
+                    </div>
+
+                    <div class="heading-inner">
+                        <p class="title">About Me</p>
+                    </div>
+                    <p>{{ user.about_me|default("Please add some lines about yourself!") }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="brand-logo-area clients-bg">
+    <div class="clients-list light-blue">
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_1.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_2.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_3.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_4.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_1.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_2.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_3.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+        <div class="client-logo">
+            <a href="#"><img src="images/clients/client_4.png" class="img-responsive" alt="Brand Image" /></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
